@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DC_AssignmentPartC.props" />
+</Project>

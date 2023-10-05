@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ClientDesktopApp/1.0.0": {
+        "runtime": {
+          "ClientDesktopApp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClientDesktopApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
