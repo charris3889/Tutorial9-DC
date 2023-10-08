@@ -120,5 +120,14 @@ namespace DC_AssignmentPartC.Controllers
         {
             return (_context.Jobs?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        [HttpPost("jobresult")]
+        public async Task<IActionResult> postJobResult(Job job)
+        {
+            _context.Jobs.Add(job);            
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetJob", new { id = job.Id }, job);
+        }
     }
 }

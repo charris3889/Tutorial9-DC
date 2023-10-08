@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DC_AssignmentPartC.Data;
 using DC_AssignmentPartC.Models;
+using Humanizer.Localisation.DateToOrdinalWords;
 
 namespace DC_AssignmentPartC.Controllers
 {
@@ -15,10 +16,20 @@ namespace DC_AssignmentPartC.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DbManager _context;
-
+        private int userNumber = 0; 
+         
         public UsersController(DbManager context)
         {
             _context = context;
+        }
+
+        [HttpPost("usercreate")]
+        public async Task<ActionResult> CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("CreateUser", new { id = user.Id }, user);
         }
 
         // GET: api/Users

@@ -8,12 +8,16 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="71,59,0,0" TextWrapping="Wrap" Text="Enter Job Below" VerticalAlignment="Top" Height="22" Width="135"/>
-        <TextBox Name="EnterJobBox" HorizontalAlignment="Left" Height="169" Margin="71,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286"/>
+        <TextBox Name="EnterJobBox" AcceptsReturn="True" AcceptsTab="True" HorizontalAlignment="Left" Height="169" Margin="71,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286"/>
         <ProgressBar Name="JobProgressBar" HorizontalAlignment="Left" Height="21" Margin="34,355,0,0" VerticalAlignment="Top" Width="726"/>
         <Button Name="SubmitButton" Content="Submit Job" HorizontalAlignment="Left" Margin="206,60,0,0" VerticalAlignment="Top"  Width="151" Click="SubmitButton_Click"/>
         <TextBox Name="NumJobsBox" HorizontalAlignment="Left" Margin="488,70,0,0" TextWrapping="Wrap" Text="Number of jobs completed: " VerticalAlignment="Top" Width="259" />
         <TextBox Name="IsDoingJobBox" HorizontalAlignment="Left" Margin="488,106,0,0" TextWrapping="Wrap" Text="Job in progress: " VerticalAlignment="Top" Width="259" />
         <Button Name="UpdateJobButton" Content="Update Job Information" HorizontalAlignment="Left" Height="39" Margin="488,178,0,0" VerticalAlignment="Top" Width="195" Click="UpdateButton_Click"/>
-
+        <Rectangle Name="rectangleBackground" Stretch="UniformToFill" Height="434" Fill="AliceBlue" Stroke="Black" Width="800" Margin="-3,0,3,0" />
+        <Button Name="SubmitDetailsButton" Content="Connect to web service" HorizontalAlignment="Left" Margin="377,313,0,0" VerticalAlignment="Top" Click="SubmitDetailsButton_Click"/>
+        <TextBox Name="IdBox" HorizontalAlignment="Left" Margin="337,115,0,0" TextWrapping="Wrap" Text="Id number" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="IpBox" HorizontalAlignment="Left" Margin="337,173,0,0" TextWrapping="Wrap" Text="Ip address" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="PortBox" HorizontalAlignment="Center" Margin="0,233,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
