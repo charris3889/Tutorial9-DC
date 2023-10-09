@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xbSVMgCX5RbOusDPjV3xOekiavgaWPdm0ZLWTSJxvDvjGC1Ygreuhlt7+vna9EKWpcsVtDn9jaAfdRHwTio9cg==",
+  "dgSpecHash": "kZSebVC9w9U2a679/bGb7xt3N6W/kj0u7opluO9pVbQsDiKChGSx4c/XGMPgoMIU+bES7JEj6JaOEuAJvUchJQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Cameron PC\\Downloads\\DC_AssignmentPartC\\DC_AssignmentPartC\\ClientDesktopApp\\ClientDesktopApp.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,8 @@
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.security.cryptography.xml\\6.0.1\\system.security.cryptography.xml.6.0.1.nupkg.sha512",
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\Cameron PC\\.nuget\\packages\\system.servicemodel.nettcp\\4.10.2\\system.servicemodel.nettcp.4.10.2.nupkg.sha512",
+    "C:\\Users\\Cameron PC\\.nuget\\packages\\system.servicemodel.primitives\\4.10.2\\system.servicemodel.primitives.4.10.2.nupkg.sha512",
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512",
     "C:\\Users\\Cameron PC\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",

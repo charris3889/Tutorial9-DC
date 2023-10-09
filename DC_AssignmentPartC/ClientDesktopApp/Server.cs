@@ -1,45 +1,63 @@
-﻿using System;
+﻿using Microsoft.Scripting.Utils;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientDesktopApp
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, UseSynchronizationContext = false, IncludeExceptionDetailInFaults = true)]
     public class Server : ServerInterface
     {
-        Dictionary<int, Job> jobs = new Dictionary<int, Job>();
-        Dictionary<int, Job> takenJobs = new Dictionary<int, Job>();
-        int currJobNumber = 0;
+        private static ServerDataSingleton instance = new ServerDataSingleton(); 
 
         public Job GetFirstJob()
         {
-            Job job = jobs[0];
-            jobs.Remove(job.Id);
-            takenJobs.Add(job.Id, job);
+            Job job = null;
+            
+            for(int i = 0; i < instance.jobs.Count; i++)
+            {
+                if(instance.jobs.ContainsKey(i))
+                {
+                    job = instance.jobs[i];
+                    
+                    instance.jobs.Remove(job.Id);
+                    instance.takenJobs.Add(job.Id, job);
+                }
+            } 
 
             return job;
-
         }
 
         public void postJob(string jobContent)
         {
             Job job = new Job();
-            job.Id = currJobNumber;
+            job.Id = instance.currJobNumber;
             job.data = jobContent;
             
-            jobs.Add(currJobNumber, job);
-            currJobNumber++;
+            instance.jobs.Add(instance.currJobNumber, job);
+            Debug.WriteLine(instance.jobs.Count);
+            instance.currJobNumber++;
         }
 
-        public void submitJobResult(int jobId, string jobResult)
+        public void submitJobResult(Job job)
         {
-            jobs[jobId].result = jobResult; 
+                instance.takenJobs[job.Id] = job; 
         }
 
         public bool hasJobs()
         {
-            return jobs.Count > 0;
+            //return jobs.Count > 0;  
+        
+            if(instance.jobs.Count > 0 )
+            {
+                return true;
+            } 
+            
+            return false;
         }
     }
 }

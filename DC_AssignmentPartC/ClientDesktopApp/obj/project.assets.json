@@ -357,6 +357,39 @@
           }
         }
       },
+      "System.ServiceModel.NetTcp/4.10.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ServiceModel.Primitives": "4.10.2"
+        },
+        "frameworkAssemblies": [
+          "System.IdentityModel",
+          "System.ServiceModel"
+        ],
+        "compile": {
+          "ref/net461/System.ServiceModel.NetTcp.dll": {}
+        },
+        "runtime": {
+          "lib/net461/System.ServiceModel.NetTcp.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
+      "System.ServiceModel.Primitives/4.10.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IdentityModel",
+          "System.ServiceModel"
+        ],
+        "compile": {
+          "ref/net461/System.ServiceModel.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/net461/System.ServiceModel.Primitives.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "System.Text.Encodings.Web/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -773,6 +806,39 @@
         "runtime": {
           "runtimes/win/lib/net461/System.Security.Principal.Windows.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "System.ServiceModel.NetTcp/4.10.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ServiceModel.Primitives": "4.10.2"
+        },
+        "frameworkAssemblies": [
+          "System.IdentityModel",
+          "System.ServiceModel"
+        ],
+        "compile": {
+          "ref/net461/System.ServiceModel.NetTcp.dll": {}
+        },
+        "runtime": {
+          "lib/net461/System.ServiceModel.NetTcp.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
+      "System.ServiceModel.Primitives/4.10.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.IdentityModel",
+          "System.ServiceModel"
+        ],
+        "compile": {
+          "ref/net461/System.ServiceModel.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/net461/System.ServiceModel.Primitives.dll": {
+            "related": ".pdb"
           }
         }
       },
@@ -1421,6 +1487,109 @@
         "version.txt"
       ]
     },
+    "System.ServiceModel.NetTcp/4.10.2": {
+      "sha512": "jWNKeXfccRqkbjTkVyKD0QBBO+FnYWQrNrJByT+oOab17UBLfvUdt1kLhPe3qZalIlBoqvRFtw6yR/oRs5r3Vw==",
+      "type": "package",
+      "path": "system.servicemodel.nettcp/4.10.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.ServiceModel.NetTcp.dll",
+        "lib/net461/System.ServiceModel.NetTcp.dll",
+        "lib/net461/System.ServiceModel.NetTcp.pdb",
+        "lib/net6.0/System.ServiceModel.NetTcp.dll",
+        "lib/net6.0/System.ServiceModel.NetTcp.pdb",
+        "lib/netcore50/System.ServiceModel.NetTcp.dll",
+        "lib/netstandard1.3/System.ServiceModel.NetTcp.dll",
+        "lib/netstandard2.0/System.ServiceModel.NetTcp.dll",
+        "lib/netstandard2.0/System.ServiceModel.NetTcp.pdb",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.ServiceModel.NetTcp.dll",
+        "ref/net461/System.ServiceModel.NetTcp.dll",
+        "ref/net6.0/System.ServiceModel.NetTcp.dll",
+        "ref/netcore50/System.ServiceModel.NetTcp.dll",
+        "ref/netstandard1.1/System.ServiceModel.NetTcp.dll",
+        "ref/netstandard1.3/System.ServiceModel.NetTcp.dll",
+        "ref/netstandard2.0/System.ServiceModel.NetTcp.dll",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.servicemodel.nettcp.4.10.2.nupkg.sha512",
+        "system.servicemodel.nettcp.nuspec"
+      ]
+    },
+    "System.ServiceModel.Primitives/4.10.2": {
+      "sha512": "8QOguIqHtWYywBt7SubPhdICE2LClHzqOMDy0LQIui4T3QJOae7g6UR+alCW61nEufYNtO8Uss41EbXqD8hdww==",
+      "type": "package",
+      "path": "system.servicemodel.primitives/4.10.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net46/System.ServiceModel.Primitives.dll",
+        "lib/net461/System.ServiceModel.Primitives.dll",
+        "lib/net461/System.ServiceModel.Primitives.pdb",
+        "lib/net6.0/System.ServiceModel.Primitives.dll",
+        "lib/net6.0/System.ServiceModel.Primitives.pdb",
+        "lib/net6.0/System.ServiceModel.dll",
+        "lib/netcore50/System.ServiceModel.Primitives.dll",
+        "lib/netstandard1.3/System.ServiceModel.Primitives.dll",
+        "lib/netstandard2.0/System.ServiceModel.Primitives.dll",
+        "lib/netstandard2.0/System.ServiceModel.Primitives.pdb",
+        "lib/netstandard2.0/System.ServiceModel.dll",
+        "lib/portable-net45+win8+wp8/_._",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net46/System.ServiceModel.Primitives.dll",
+        "ref/net461/System.ServiceModel.Primitives.dll",
+        "ref/net6.0/System.ServiceModel.Primitives.dll",
+        "ref/net6.0/System.ServiceModel.dll",
+        "ref/netcore50/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.0/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.1/System.ServiceModel.Primitives.dll",
+        "ref/netstandard1.3/System.ServiceModel.Primitives.dll",
+        "ref/netstandard2.0/System.ServiceModel.Primitives.dll",
+        "ref/netstandard2.0/System.ServiceModel.dll",
+        "ref/portable-net45+win8+wp8/_._",
+        "ref/win8/_._",
+        "ref/wp8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.servicemodel.primitives.4.10.2.nupkg.sha512",
+        "system.servicemodel.primitives.nuspec"
+      ]
+    },
     "System.Text.Encodings.Web/7.0.0": {
       "sha512": "OP6umVGxc0Z0MvZQBVigj4/U31Pw72ITihDWP9WiWDm+q5aoe0GaJivsfYGq53o6dxH7DcXWiCTl7+0o2CGdmg==",
       "type": "package",
@@ -1611,7 +1780,8 @@
       "Microsoft.CSharp >= 4.7.0",
       "Newtonsoft.Json >= 13.0.3",
       "RestSharp >= 110.2.0",
-      "System.Private.ServiceModel >= 4.10.2"
+      "System.Private.ServiceModel >= 4.10.2",
+      "System.ServiceModel.NetTcp >= 4.10.2"
     ]
   },
   "packageFolders": {
@@ -1670,6 +1840,10 @@
             "version": "[110.2.0, )"
           },
           "System.Private.ServiceModel": {
+            "target": "Package",
+            "version": "[4.10.2, )"
+          },
+          "System.ServiceModel.NetTcp": {
             "target": "Package",
             "version": "[4.10.2, )"
           }

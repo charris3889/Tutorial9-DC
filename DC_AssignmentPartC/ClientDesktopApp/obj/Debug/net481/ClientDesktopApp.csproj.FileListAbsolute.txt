@@ -55,3 +55,5 @@ C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDeskto
 C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDesktopApp\obj\Debug\net481\ClientDesktopApp.csproj.CopyComplete
 C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDesktopApp\obj\Debug\net481\ClientDesktopApp.exe
 C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDesktopApp\obj\Debug\net481\ClientDesktopApp.pdb
+C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDesktopApp\bin\Debug\net481\System.ServiceModel.NetTcp.dll
+C:\Users\Cameron PC\Downloads\DC_AssignmentPartC\DC_AssignmentPartC\ClientDesktopApp\bin\Debug\net481\System.ServiceModel.Primitives.dll

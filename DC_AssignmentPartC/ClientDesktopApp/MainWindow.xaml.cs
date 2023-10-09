@@ -19,6 +19,8 @@ using RestSharp;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using Microsoft.CSharp.RuntimeBinder;
+using System.Diagnostics;
+using System.Net;
 
 namespace ClientDesktopApp
 {
@@ -66,23 +68,24 @@ namespace ClientDesktopApp
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            newJob = EnterJobBox.Text;
+            MainWindow.newJob = EnterJobBox.Text;
         }
 
         private void ServerThread()
         {
-            string url = "net.tcp://localhost:" + thisUser.port + "/Server";
+            //string url = "net.tcp://localhost:" + thisUser.port + "/Server";
             // "net.tcp://localhost:8100/Server
-            //string url = "net.tcp://" + thisUser.ipAddress + ":" + thisUser.port + "/Server";
+            string url = "net.tcp://" + thisUser.ipAddress + ":" + thisUser.port + "/Server";
             NetTcpBinding binding = new NetTcpBinding();
             ServiceHost host = new ServiceHost(typeof(Server));
             host.AddServiceEndpoint(typeof(ServerInterface), binding, url);
             host.Open();
+            
 
 
             ChannelFactory<ServerInterface> foobFactory;
-            NetTcpBinding tcp = new NetTcpBinding();
-            foobFactory = new ChannelFactory<ServerInterface>(tcp, new EndpointAddress(url));
+            //NetTcpBinding tcp = new NetTcpBinding();
+            foobFactory = new ChannelFactory<ServerInterface>(binding, new EndpointAddress(url));
             ServerInterface myServer = foobFactory.CreateChannel();
 
             while (programRunning)
@@ -92,10 +95,12 @@ namespace ClientDesktopApp
                     Job job = new Job();
                     job.Id = numberJobs;
                     job.data = newJob;
-                    newJob = null;
+                    MainWindow.newJob = null;
 
                     myServer.postJob(job.data);
+                    Debug.WriteLine("Just posted job");
                 }
+                System.Threading.Thread.Sleep(5000);
             }
 
             host.Close();
@@ -109,10 +114,9 @@ namespace ClientDesktopApp
                 if(checkClientJobs())
                 {
                     //do job
-                    string result = doJob(); 
-                    onJobComplete(currentJob.Id, result);
+                    doJob(); 
                 }
-
+                System.Threading.Thread.Sleep(5000);
             }
         }
 
@@ -122,7 +126,9 @@ namespace ClientDesktopApp
             RestRequest restRequest = new RestRequest("api/Users");
             RestResponse response = client.Execute(restRequest);
 
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
+            //Debug.WriteLine("Client list" + response.Content); 
+            
             userList = JsonConvert.DeserializeObject<List<User>>(response.Content);
            // List<Users> userList = response.Content;
         }
@@ -139,16 +145,23 @@ namespace ClientDesktopApp
                     if (!(user.Id == thisUser.Id))
                     {
                         //string URL = user.ipAddress + ":" + user.port;
-                        //string URL = "net.tcp://" + user.ipAddress + ":" + user.port + "/Server"; 
-                        string URL = "net.tcp://localhost:" + user.port + "/Server";
+                        string URL = "net.tcp://" + user.ipAddress + ":" + user.port + "/Server"; 
+                        //string URL = "net.tcp://localhost:" + user.port + "/Server";
                         //string URL = "net.tcp://localhost:8200/Server";
                         foobFactory = new ChannelFactory<ServerInterface>(tcp, new EndpointAddress(URL));
                         foob = foobFactory.CreateChannel();
 
+                        Debug.WriteLine(foob.hasJobs());
+
                         if (foob.hasJobs())
                         {
+                            Debug.WriteLine("Found jobs");
                             currentJob = foob.GetFirstJob();
-                            return true;
+                            if (currentJob != null)
+                            {
+                                return true;
+
+                            }
                         }
                     }
                 }
@@ -161,43 +174,61 @@ namespace ClientDesktopApp
             return false; //No job
         }
 
-        private void onJobComplete(int id, string jobResult) {
-            Job job = new Job {Id = id, result = jobResult};
+        private void onJobComplete(Job job) {
             RestClient restClient = new RestClient(WEBSERVICEADDRESS);
-            RestRequest restRequest = new RestRequest("/api/Jobs/jobresult", Method.Post);
+            RestRequest restRequest = new RestRequest("/api/Jobs", Method.Post);
 
             restRequest.RequestFormat = RestSharp.DataFormat.Json;
             restRequest.AddBody(job);
 
             RestResponse restResponse = restClient.Execute(restRequest);
+
+            if(restResponse.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new Exception();
+            }
             //Check response for errors later
 
-            foob.submitJobResult(id, jobResult);
+            foob.submitJobResult(job);
         }
 
-        private string doJob()
+        private void doJob()
         {
-            JobProgressBar.Visibility = Visibility.Visible;
+            Debug.WriteLine("Doing job");
+            Dispatcher.BeginInvoke(new Action(() => {
+                JobProgressBar.Visibility = Visibility.Visible;            }));
+            
             isDoingJob = true;
 
             string code = currentJob.data;
+            dynamic result;
             try {  
                 ScriptEngine scriptEngine = Python.CreateEngine();
                 ScriptScope scriptScope = scriptEngine.CreateScope();
-                dynamic result = scriptEngine.Execute(code, scriptScope);
+                result = scriptEngine.Execute(code, scriptScope);
 
-                JobProgressBar.Visibility = Visibility.Hidden;
-                isDoingJob = false;
-                numberJobsDone++;
-                return result.toString(); 
+                Dispatcher.BeginInvoke(new Action(() => {
+                    JobProgressBar.Visibility = Visibility.Hidden;
+                }));
+
+                MainWindow.isDoingJob = false;
+                MainWindow.numberJobsDone++;
             }
             catch(Exception e)
             {
-                JobProgressBar.Visibility = Visibility.Hidden;
-                isDoingJob = false;
-                return e.Message;
-            } 
+                Dispatcher.BeginInvoke(new Action(() => {
+                    JobProgressBar.Visibility = Visibility.Hidden;
+                }));
+                
+                MainWindow.isDoingJob = false;
+                result = e.Message;
+            }
+            string strId = thisUser.Id.ToString() + numberJobsDone.ToString();
+            int id = Int32.Parse(strId);
+            Job job = new Job { Id = id, data = code, result = result};
 
+            onJobComplete(job);
+            return;
         }
 
         private void SubmitDetailsButton_Click(object sender, RoutedEventArgs e)

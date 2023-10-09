@@ -22,6 +22,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="System.Private.ServiceModel" Version="4.10.2" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.2" />
   </ItemGroup>
 
   <ItemGroup>

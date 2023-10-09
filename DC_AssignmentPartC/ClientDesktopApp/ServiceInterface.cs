@@ -12,10 +12,13 @@ namespace ClientDesktopApp
     {
         [OperationContract]
         void postJob(string jobContent);
+        
         [OperationContract]
-        void submitJobResult(int jobId, string jobResult);
+        void submitJobResult(Job job);
+        
         [OperationContract]
         Job GetFirstJob();
+        
         [OperationContract]
         bool hasJobs();
     }

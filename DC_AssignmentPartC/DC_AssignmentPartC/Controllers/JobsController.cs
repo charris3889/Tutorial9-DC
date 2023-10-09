@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DC_AssignmentPartC.Data;
 using DC_AssignmentPartC.Models;
+using Microsoft.Data.Sqlite;
 
 namespace DC_AssignmentPartC.Controllers
 {
@@ -22,7 +23,8 @@ namespace DC_AssignmentPartC.Controllers
         }
 
         // GET: api/Jobs
-        [HttpGet]
+        
+        [HttpGet("getall")]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
           if (_context.Jobs == null)
@@ -90,9 +92,23 @@ namespace DC_AssignmentPartC.Controllers
           {
               return Problem("Entity set 'DbManager.Jobs'  is null.");
           }
-            _context.Jobs.Add(job);
-            await _context.SaveChangesAsync();
+           
+            bool jobSubmitted = false;
+            Random random = new Random(); 
+            while (jobSubmitted == false)
+            {
+                try
+                {
+                    _context.Jobs.Add(job);
+                    await _context.SaveChangesAsync();
+                    jobSubmitted = true;
+                }
+                catch (SqliteException)
+                {
 
+                    job.Id = random.Next(); 
+                }
+                }
             return CreatedAtAction("GetJob", new { id = job.Id }, job);
         }
 
@@ -124,9 +140,22 @@ namespace DC_AssignmentPartC.Controllers
         [HttpPost("jobresult")]
         public async Task<IActionResult> postJobResult(Job job)
         {
-            _context.Jobs.Add(job);            
-            await _context.SaveChangesAsync();
+            bool jobSuccess = false;
 
+            while(jobSuccess) { 
+                try
+                {
+                    _context.Jobs.Add(job);
+
+                    await _context.SaveChangesAsync();
+
+                    jobSuccess = true;
+                }
+                catch (SqliteException e)
+                {
+
+                }
+            }
             return CreatedAtAction("GetJob", new { id = job.Id }, job);
         }
     }
