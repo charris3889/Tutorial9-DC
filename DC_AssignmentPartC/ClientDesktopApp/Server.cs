@@ -18,7 +18,7 @@ namespace ClientDesktopApp
         {
             Job job = null;
             
-            for(int i = 0; i < instance.jobs.Count; i++)
+            for(int i = 0; i < instance.currJobNumber; i++)
             {
                 if(instance.jobs.ContainsKey(i))
                 {
@@ -26,6 +26,8 @@ namespace ClientDesktopApp
                     
                     instance.jobs.Remove(job.Id);
                     instance.takenJobs.Add(job.Id, job);
+
+                    return job;
                 }
             } 
 

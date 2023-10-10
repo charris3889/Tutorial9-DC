@@ -49,6 +49,7 @@ namespace ClientDesktopApp
             InitializeComponent();
             //Begin other threads
             JobProgressBar.Visibility = Visibility.Hidden;
+            thisUser = new User();
         }
 
         public void startThreads()
@@ -160,7 +161,6 @@ namespace ClientDesktopApp
                             if (currentJob != null)
                             {
                                 return true;
-
                             }
                         }
                     }
@@ -182,11 +182,8 @@ namespace ClientDesktopApp
             restRequest.AddBody(job);
 
             RestResponse restResponse = restClient.Execute(restRequest);
+            Debug.WriteLine(restResponse.Content);
 
-            if(restResponse.StatusCode == HttpStatusCode.NotFound)
-            {
-                throw new Exception();
-            }
             //Check response for errors later
 
             foob.submitJobResult(job);
@@ -199,20 +196,24 @@ namespace ClientDesktopApp
                 JobProgressBar.Visibility = Visibility.Visible;            }));
             
             isDoingJob = true;
-
+            string strResult;
             string code = currentJob.data;
-            dynamic result;
+            //dynamic result;
             try {  
                 ScriptEngine scriptEngine = Python.CreateEngine();
                 ScriptScope scriptScope = scriptEngine.CreateScope();
-                result = scriptEngine.Execute(code, scriptScope);
+                scriptEngine.Execute(code, scriptScope);
+
+                dynamic testFunction = scriptScope.GetVariable("func");
+                var result = testFunction();
 
                 Dispatcher.BeginInvoke(new Action(() => {
                     JobProgressBar.Visibility = Visibility.Hidden;
                 }));
 
-                MainWindow.isDoingJob = false;
-                MainWindow.numberJobsDone++;
+
+                strResult = Convert.ToString(result);
+                //strResult = result.ToString();
             }
             catch(Exception e)
             {
@@ -220,12 +221,15 @@ namespace ClientDesktopApp
                     JobProgressBar.Visibility = Visibility.Hidden;
                 }));
                 
-                MainWindow.isDoingJob = false;
-                result = e.Message;
+                strResult = e.Message;
             }
+
+            MainWindow.isDoingJob = false;
+            MainWindow.numberJobsDone++;
             string strId = thisUser.Id.ToString() + numberJobsDone.ToString();
             int id = Int32.Parse(strId);
-            Job job = new Job { Id = id, data = code, result = result};
+            int compBy = thisUser.Id;
+            Job job = new Job { Id = id, data = code, result = strResult, completedBy = compBy};
 
             onJobComplete(job);
             return;
@@ -233,7 +237,6 @@ namespace ClientDesktopApp
 
         private void SubmitDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            thisUser = new User();
             thisUser.Id = Int32.Parse(IdBox.Text);
             thisUser.ipAddress = IpBox.Text;
             thisUser.port = PortBox.Text;

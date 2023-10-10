@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "List";    
+}
+<script type="text/JavaScript">
+    function timedRefresh(timeoutPeriod) {
+        setTimeout("location.reload(true);", timeoutPeriod);
+    }
+</script>
+
+<body onload="JavaScript:timedRefresh(60000);">
+    <!-- model List<DC_AssignmentPartC.Models.UserData> -->
+    <h1>User List</h1>
+
+    <ul>
+        @foreach (UserData user in ViewBag.model)
+        {
+            <li>ID: @user.Id NumberOfJobsCompleted = @user.numberJobs</li>
+        }
+    </ul>
+</body>
+

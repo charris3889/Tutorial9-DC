@@ -22,6 +22,9 @@ namespace DC_AssignmentPartC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("completedBy")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("data")
                         .IsRequired()
                         .HasColumnType("TEXT");

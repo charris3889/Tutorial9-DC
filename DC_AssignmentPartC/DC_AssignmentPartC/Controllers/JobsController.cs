@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DC_AssignmentPartC.Data;
 using DC_AssignmentPartC.Models;
 using Microsoft.Data.Sqlite;
+using System.Diagnostics;
 
 namespace DC_AssignmentPartC.Controllers
 {
@@ -92,7 +93,8 @@ namespace DC_AssignmentPartC.Controllers
           {
               return Problem("Entity set 'DbManager.Jobs'  is null.");
           }
-           
+
+            Debug.WriteLine("Posting job"); 
             bool jobSubmitted = false;
             Random random = new Random(); 
             while (jobSubmitted == false)

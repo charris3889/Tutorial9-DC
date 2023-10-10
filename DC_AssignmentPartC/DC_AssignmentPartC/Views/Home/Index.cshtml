@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<DC_AssignmentPartC.Models.UserData>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Page</title>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body onload=loadView()>
+    <div id="header"></div>
+    <div id="navigation">
+        <h1>List</h1>
+        <button type="button" id="Button" onclick="loadView()">List</button>
+        </div>
+    <div id="main"></div>
+    <div id="footer">
+        <p></p>
+    </div>
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</body>
+</html>
